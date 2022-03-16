@@ -1,11 +1,13 @@
 package com.example.springbootreact.profile;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.*;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/user-profile")
@@ -23,4 +25,16 @@ public class UserProfileController {
         return this.userProfileService.getUserProfiles();
     }
 
+
+    @PostMapping(
+            path = "{userProfileId}/image/download",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public void uploadUserProfileImage(
+            @PathVariable("userProfileId")UUID userProfileId,
+            @RequestParam("file")MultipartFile file)
+    {
+            this.userProfileService.uploadUserProfileImage(userProfileId, file);
+    }
 }
