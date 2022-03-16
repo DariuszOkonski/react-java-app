@@ -1,15 +1,16 @@
 import axios from "axios";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 export const UserProfiles = () => {
+    const [userProfiles, setUserProfiles] = useState([])
+
     const fetchUserProfiles = () => {
         axios.get('http://localhost:8080/api/v1/user-profile')
             .then(res => {
-                console.log('AXIOS -----------')
-                console.log(res);
+                const data = res.data;
+                setUserProfiles(data)
             })
             .catch(err => {
-                console.log('ERROR -------')
                 console.log(err);
             })
     }
@@ -18,5 +19,12 @@ export const UserProfiles = () => {
         fetchUserProfiles();
     },[])
 
-    return <h1>UserProfiles</h1>
+    return userProfiles.map((userProfile, index) => {
+        return (
+            <div key={index}>
+                <h1>{userProfile.userName}</h1>
+                <p>{userProfile.userProfileId}</p>
+            </div>
+        )
+    })
 }
