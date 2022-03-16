@@ -27,7 +27,7 @@ public class UserProfileController {
 
 
     @PostMapping(
-            path = "{userProfileId}/image/download",
+            path = "{userProfileId}/image/upload",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
@@ -35,6 +35,10 @@ public class UserProfileController {
             @PathVariable("userProfileId")UUID userProfileId,
             @RequestParam("file")MultipartFile file)
     {
-            this.userProfileService.uploadUserProfileImage(userProfileId, file);
+        System.out.println("POST");
+        System.out.println(userProfileId);
+        System.out.println(file);
+
+//            this.userProfileService.uploadUserProfileImage(userProfileId, file);
     }
 }
