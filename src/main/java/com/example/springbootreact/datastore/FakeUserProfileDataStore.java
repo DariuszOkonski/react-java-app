@@ -20,5 +20,4 @@ public class FakeUserProfileDataStore {
     public List<UserProfile> getUserProfiles() {
         return USER_PROFILES;
     }
-
 }
