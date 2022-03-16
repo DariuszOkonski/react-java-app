@@ -35,10 +35,6 @@ public class UserProfileController {
             @PathVariable("userProfileId")UUID userProfileId,
             @RequestParam("file")MultipartFile file)
     {
-        System.out.println("POST");
-        System.out.println(userProfileId);
-        System.out.println(file);
-
-//            this.userProfileService.uploadUserProfileImage(userProfileId, file);
+            this.userProfileService.uploadUserProfileImage(userProfileId, file);
     }
 }
